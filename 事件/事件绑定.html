@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+    <div id="div1">
+        <a href="http://www.baidu.com" id="link">baidu</a>
+        <a href="http://www.baidu.com" id="link3">baiduds</a>
+        <a href="http://www.baidu.com" id="link2">baiddfu</a>
+        <p id="p1">激活</p>
+        <p id="p2">取消</p>
+    </div>
+    <div id="div2">
+        <p id="p3">取消</p>
+        <p id="p4">取消</p>
+    </div>
+    <script type="text/javascript">
+        function bindEvent(elem ,type,fn) {
+            elem.addEventListener(type,fn)
+        }
+        // var link=document.getElementById('link');
+        // bindEvent(link,'click',function (e) {
+        //     e.preventDefault();
+        //     console.log(123)
+        // })
+        // var p1=document.getElementById('p1')
+        // bindEvent(p1,'click',function (e) {
+        //     alert('激活')
+        // },true)
+        // var body=document.body
+        // bindEvent(body,'click',function (e) {
+        //     alert('取消')
+        // })
+        // var p1=document.getElementById('p1');
+        // p1.addEventListener('click',function () {
+        //     alert('激活')
+        // },true)
+        <!-- 代理-->
+        var div1=document.getElementById('div1');
+        bindEvent(div1,'click',function (e) {
+            e.preventDefault()
+            var target=e.target
+            if(target.nodeName=='A'){
+                console.log('click')
+            }
+        })
+    </script>
+
+</body>
+</html>

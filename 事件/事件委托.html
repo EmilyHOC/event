@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    <a href="http://www.baidu.com" id="link">baidu</a>
+    <a href="http://www.baidu.com" id="link3">baiduds</a>
+    <a href="http://www.baidu.com" id="link2">baiddfu</a>
+    <p id="p1">激活</p>
+    <p id="p2">取消</p>
+</div>
+<div id="div2">
+    <p id="p3">取消</p>
+    <p id="p4">取消</p>
+</div>
+<script type="text/javascript">
+    function bindEvent(elem,type,selector,fn) {
+        if(fn==null){
+            fn=selector
+            selector =null
+        }
+        elem.addEventListener(type,function (e) {
+            if(selector){
+                //代理
+                target=e.target
+                if(target.matches(selector)){
+                    fn.call(this,e)
+                }
+            }else {
+                //不是代理
+                fn(e)
+            }
+        })
+
+    }
+    var div1=document.getElementById('div1')
+    bindEvent(div1,'click','a',function (e) {
+        e.preventDefault();
+        console.log(this.innerHTML)
+    })
+    var p1=document.getElementById('p1')
+    bindEvent(p1,'click',function () {
+        console.log(p1.innerHTML)
+    })
+    
+</script>
+</body>
+</html>
